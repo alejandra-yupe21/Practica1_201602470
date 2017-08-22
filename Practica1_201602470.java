@@ -11,20 +11,20 @@ public class Practica1_201602470 {
     public static int minas = 0;
     public static int mov1 = 0;
     public static int mov2 = 0;
-    public static int win = 0;
+    
     public static boolean finpartida = false;
     public static boolean debug = false;
     public static int count = 0;
-    public static boolean fi = false;
+    public static boolean fin = false;
     public static char op, op2;
 
     public static void Inicio() {
         Scanner leer = new Scanner(System.in);
 
-        System.out.println("Alejandra Carolina Yupe Hernández");
-        System.out.println("201602470");
-        System.out.println("IPC1 'A' Práctica 1");
-        System.out.println("BUSCAMINAS!!!");
+        System.out.println("            Alejandra Carolina Yupe Hernández");
+        System.out.println("                        201602470");
+        System.out.println("                    IPC1 'A' Práctica 1");
+        System.out.println("                        BUSCAMINAS!!!");
 
         leer.nextLine();
     }
@@ -34,60 +34,57 @@ public class Practica1_201602470 {
         Scanner enter = new Scanner(System.in);
         int opcion = 0;
 
-        System.out.println("----------------------------------");
-        System.out.println("BUSCAMINAS");
-        System.out.println("1. Principiante");
-        System.out.println("2. Intermedio");
-        System.out.println("3. Avanzado");
-        System.out.println("4. Salir");
-        System.out.println("Ingrese opción:");
+        System.out.println("----------------------------------------------------");
+        System.out.println("                      BUSCAMINAS");
+        System.out.println("                   1. Principiante");
+        System.out.println("                   2. Intermedio");
+        System.out.println("                   3. Avanzado");
+        System.out.println("                   4. Salir");
+        System.out.println("                    Ingrese opción:");
         opcion = enter.nextInt();
-       
 
         switch (opcion) {
             case 1:
-                System.out.println("-------------------------------");
-                System.out.println("NIVEL PRINCIPIANTE");
+                System.out.println("--------------------------------------------");
+                System.out.println("            NIVEL PRINCIPIANTE");
                 filas = 5;
                 columnas = 5;
                 minas = 5;
-                win = (8 * 8) - 19;
+               
                 break;
             case 2:
-                System.out.println("-------------------------------");
-                System.out.println("NIVEL INTERMEDIO");
+                System.out.println("--------------------------------------------");
+                System.out.println("            NIVEL INTERMEDIO");
                 filas = 7;
                 columnas = 7;
                 minas = 9;
-                win = (16 * 16) - 40;
+
                 break;
             case 3:
-                System.out.println("-------------------------------");
-                System.out.println("NIVEL AVANZADO");
+                System.out.println("--------------------------------------------");
+                System.out.println("            NIVEL AVANZADO");
                 filas = 9;
                 columnas = 9;
                 minas = 13;
-                win = (16 * 30) - 99;
+             
                 break;
 
             case 4:
-                fi = true;
+                fin = true;
                 System.exit(0);
                 break;
-            default:
-                System.out.println("Introduce una opción valida!!");
-                break;
+            
 
         }
 
     }
 
     public static void Mat(int tamañoF, int tamañoC, char[][] matriz) {
-      
+
         System.out.println("       ");
         for (int i = 1; i < tamañoF; i++) {
             if (i == 1) {
-                System.out.println("");
+                System.out.println(" ");
             }
 
             for (int j = 1; j < tamañoC; j++) {
@@ -95,11 +92,11 @@ public class Practica1_201602470 {
             }
             if (i == tamañoF - 1) {
                 System.out.println(" ");
-                
+
             }
             System.out.println(" ");
         }
-        System.out.println("----------------");
+        System.out.println("       ----------------------");
     }
 
     public static int NumeroAleatorio(int max) {
@@ -193,38 +190,40 @@ public class Practica1_201602470 {
         Scanner sc = new Scanner(System.in);
         boolean valid = false;
 
-        System.out.println("Voltear: V");
-        System.out.println("Reiniciar: R");
-        System.out.println("Salir: S");
-        System.out.println("Ingrese una opción");
+        System.out.println("            Voltear: V");
+        System.out.println("            Reiniciar: R");
+        System.out.println("            Salir: S\n");
+        System.out.println("            Ingrese una opción");
         op = sc.next().charAt(0);
-        
+
         switch (op) {
             case 'V':
                 while (!valid) {
+                    System.out.println("    Introduce la fila y la columna\n");
 
-                   
-                    System.out.print("Introduce la fila y la columna");
-                    mov1 = sc.nextInt();
-                    mov2 = sc.nextInt();
-                   
-                    System.out.println("");
-                    System.out.println("Acepta los datos ingresados?");
-                    op2=sc.next().charAt(0);
-                    switch (op2){
+                    String coordenadas = "";
+                    Scanner entradaEscaner = new Scanner(System.in);
+                    coordenadas = entradaEscaner.nextLine();
+                    System.out.println("    Acepta los datos ingresados?");
+                    String coordenada[] = coordenadas.split(",");
+                    mov1 = Integer.parseInt(coordenada[0]);
+                    mov2 = Integer.parseInt(coordenada[1]);
+                    op2 = sc.next().charAt(0);
+
+                    switch (op2) {
                         case 'N':
-                           Practica1_201602470.Movimientos();
+                            Practica1_201602470.Movimientos();
                             break;
                         case 'Y':
-                       if ((mov1 < filas && mov2 < columnas) && (mov1 > 0 && mov2 > 0)) {
-                        valid = true;
-                    } else {
-                        valid = false;
-                        break;
+                            if ((mov1 < filas && mov2 < columnas) && (mov1 > 0 && mov2 > 0)) {
+                                valid = true;
+                            } else {
+                                valid = false;
+                                break;
+                            }
                     }
-                }     
-                    }
-                    
+                }
+
                 break;
             case 'R':
                 Practica1_201602470.iniciarMatriz();
@@ -243,9 +242,10 @@ public class Practica1_201602470 {
         }
         if (matriz[op1][op2] == '*') {
             finpartida = true;
-            System.out.println("Ha perdido la partida");
+            System.out.println("            Ha perdido la partida");
             System.out.println("");
             System.out.println(matriz[f][c]);
+        
         } else if (matriz[f][c] == '0') {
             if (aux[f][c] != matriz[f][c]) {
                 aux[f][c] = matriz[f][c];
@@ -267,15 +267,15 @@ public class Practica1_201602470 {
                 ++count;
             }
         }
-        if (count == win) {
-            System.out.println("Ha ganado la partida!!!");
+        if(count=='0') {
+            System.out.println("            Ha ganado la partida!!!");
             finpartida = true;
         }
     }
 
     public static void main(String[] args) {
-       
-        while (!fi) {
+
+        while (!fin) {
             count = 0;
             finpartida = false;
             Inicio();
