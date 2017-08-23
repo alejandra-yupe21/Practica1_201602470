@@ -11,21 +11,19 @@ public class Practica1_201602470 {
     public static int minas = 0;
     public static int mov1 = 0;
     public static int mov2 = 0;
-    
     public static boolean finpartida = false;
-    public static boolean debug = false;
-    public static int count = 0;
+   public static int count = 0;
     public static boolean fin = false;
     public static char op, op2;
 
     public static void Inicio() {
+        
         Scanner leer = new Scanner(System.in);
 
         System.out.println("            Alejandra Carolina Yupe Hernández");
         System.out.println("                        201602470");
         System.out.println("                    IPC1 'A' Práctica 1");
         System.out.println("                        BUSCAMINAS!!!");
-
         leer.nextLine();
     }
 
@@ -49,31 +47,27 @@ public class Practica1_201602470 {
                 System.out.println("            NIVEL PRINCIPIANTE");
                 filas = 5;
                 columnas = 5;
-                minas = 5;
-               
+                minas = 4;
                 break;
             case 2:
                 System.out.println("--------------------------------------------");
                 System.out.println("            NIVEL INTERMEDIO");
                 filas = 7;
                 columnas = 7;
-                minas = 9;
-
+                minas = 8;
                 break;
             case 3:
                 System.out.println("--------------------------------------------");
                 System.out.println("            NIVEL AVANZADO");
                 filas = 9;
                 columnas = 9;
-                minas = 13;
-             
+                minas = 12;
                 break;
 
             case 4:
                 fin = true;
                 System.exit(0);
                 break;
-            
 
         }
 
@@ -86,13 +80,11 @@ public class Practica1_201602470 {
             if (i == 1) {
                 System.out.println(" ");
             }
-
             for (int j = 1; j < tamañoC; j++) {
                 System.out.printf("[" + matriz[i][j] + "]");
             }
             if (i == tamañoF - 1) {
                 System.out.println(" ");
-
             }
             System.out.println(" ");
         }
@@ -100,12 +92,14 @@ public class Practica1_201602470 {
     }
 
     public static int NumeroAleatorio(int max) {
+        
         Random r = new Random();
         int num = (int) (Math.random() * max);
         return num;
     }
 
     public static void iniciarMatriz() {
+
         for (int l = 1; l < filas; l++) {
             for (int m = 1; m < columnas; m++) {
                 aux[l][m] = 'X';
@@ -119,10 +113,12 @@ public class Practica1_201602470 {
     }
 
     public static void intrMinas() {
+        
         boolean full = false;
         int i = 0;
+        
         out:
-        while (i <= minas) {
+          while (i <= minas) {
             for (int j = 1; j < filas; j++) {
                 for (int k = 1; k < columnas; k++) {
                     int mina = NumeroAleatorio(columnas);
@@ -139,7 +135,9 @@ public class Practica1_201602470 {
     }
 
     public static void Minas() {
+        
         int count = 0;
+        
         for (int n = 2; n <= matriz.length - 2; ++n) {
             for (int o = 2; o <= matriz[0].length - 2; ++o) {
                 count = 0;
@@ -200,7 +198,6 @@ public class Practica1_201602470 {
             case 'V':
                 while (!valid) {
                     System.out.println("    Introduce la fila y la columna\n");
-
                     String coordenadas = "";
                     Scanner entradaEscaner = new Scanner(System.in);
                     coordenadas = entradaEscaner.nextLine();
@@ -223,7 +220,6 @@ public class Practica1_201602470 {
                             }
                     }
                 }
-
                 break;
             case 'R':
                 Practica1_201602470.iniciarMatriz();
@@ -244,8 +240,16 @@ public class Practica1_201602470 {
             finpartida = true;
             System.out.println("            Ha perdido la partida");
             System.out.println("");
-            System.out.println(matriz[f][c]);
-        
+            for (f = 0; f < matriz.length; f++) {
+                System.out.print("");
+                for (c = 0; c < matriz[f].length; c++) {
+                    System.out.print("[" + matriz[f][c] + "]");
+                }
+                if (c != matriz[f].length - 1) {
+                    System.out.print("");
+                    System.out.println("");
+                }
+            }               
         } else if (matriz[f][c] == '0') {
             if (aux[f][c] != matriz[f][c]) {
                 aux[f][c] = matriz[f][c];
@@ -267,7 +271,7 @@ public class Practica1_201602470 {
                 ++count;
             }
         }
-        if(count=='0') {
+        if (count == '0') {
             System.out.println("            Ha ganado la partida!!!");
             finpartida = true;
         }
@@ -290,10 +294,10 @@ public class Practica1_201602470 {
             Voltear(mov1, mov2);
             while (!finpartida) {
 
-                Mat(filas, columnas, aux);
-                System.out.println("");
-                Movimientos();
-                Voltear(mov1, mov2);
+            Mat(filas, columnas, aux);
+            System.out.println("");
+            Movimientos();
+            Voltear(mov1, mov2);
             }
         }
 
